@@ -1,6 +1,7 @@
 import toPromise from '../../lib/toPromise'
 import skippable from '../core/skippable'
 import isAbove from '../raw/above'
+import isExisty from '../raw/existy'
 
 /**
  * Makes sure the value provided by the end user is above the
@@ -23,7 +24,7 @@ import isAbove from '../raw/above'
  */
 export default (data, field, message, [minValue], get) => {
   return toPromise(() => {
-    if (!minValue) {
+    if (!isExisty(minValue)) {
       return new Error('above:make sure to define minValue')
     }
 
