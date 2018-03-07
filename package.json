@@ -5,7 +5,8 @@
   "main": "builds/main.js",
   "types": "index.d.ts",
   "files": [
-    "builds"
+    "builds",
+    "index.d.ts"
   ],
   "scripts": {
     "lint": "standard src/**/*.js test/**/*.js",
