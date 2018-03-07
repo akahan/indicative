@@ -653,7 +653,7 @@ group('Validations | dateFormat', function () {
   })
 })
 
-group('Validations | in', function () {
+group('Validations | inList', function () {
   test('should throw an error when field value is not in defined fields', async function (assert) {
     const data = {gender: 'Foo'}
     const field = 'gender'
@@ -661,7 +661,7 @@ group('Validations | in', function () {
     const get = prop
     const args = ['F', 'M', 'O']
     try {
-      const passes = await validations.in(data, field, message, args, get)
+      const passes = await validations.inList(data, field, message, args, get)
       assert.notExist(passes)
     } catch (e) {
       assert.equal(e, message)
@@ -674,7 +674,7 @@ group('Validations | in', function () {
     const message = 'select valid gender'
     const get = prop
     const args = ['F', 'M', 'O']
-    const passes = await validations.in(data, field, message, args, get)
+    const passes = await validations.inList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 
@@ -684,7 +684,7 @@ group('Validations | in', function () {
     const message = 'select valid marks'
     const get = prop
     const args = [10, 20, 40]
-    const passes = await validations.in(data, field, message, args, get)
+    const passes = await validations.inList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 
@@ -694,7 +694,7 @@ group('Validations | in', function () {
     const message = 'select valid marks'
     const get = prop
     const args = [10, 20, 40]
-    const passes = await validations.in(data, field, message, args, get)
+    const passes = await validations.inList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 
@@ -704,12 +704,12 @@ group('Validations | in', function () {
     const message = 'select valid marks'
     const get = prop
     const args = [10, 20, 40]
-    const passes = await validations.in(data, field, message, args, get)
+    const passes = await validations.inList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 })
 
-group('Validations | notIn', function () {
+group('Validations | notInList', function () {
   test('should throw an error when field value is in defined fields', async function (assert) {
     const data = {username: 'admin'}
     const field = 'username'
@@ -717,7 +717,7 @@ group('Validations | notIn', function () {
     const get = prop
     const args = ['admin', 'super', 'root']
     try {
-      const passes = await validations.notIn(data, field, message, args, get)
+      const passes = await validations.notInList(data, field, message, args, get)
       assert.notExist(passes)
     } catch (e) {
       assert.equal(e, message)
@@ -730,7 +730,7 @@ group('Validations | notIn', function () {
     const message = 'select valid username'
     const get = prop
     const args = ['admin', 'super', 'root']
-    const passes = await validations.notIn(data, field, message, args, get)
+    const passes = await validations.notInList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 
@@ -740,7 +740,7 @@ group('Validations | notIn', function () {
     const message = 'select valid username'
     const get = prop
     const args = ['admin', 'super', 'root']
-    const passes = await validations.notIn(data, field, message, args, get)
+    const passes = await validations.notInList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 
@@ -750,7 +750,7 @@ group('Validations | notIn', function () {
     const message = 'select valid username'
     const get = prop
     const args = ['admin', 'super', 'root']
-    const passes = await validations.notIn(data, field, message, args, get)
+    const passes = await validations.notInList(data, field, message, args, get)
     assert.equal(passes, 'validation passed')
   })
 })

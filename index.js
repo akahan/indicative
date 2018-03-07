@@ -18,25 +18,15 @@ import * as formatters from './src/formatters'
 import rule from './src/core/rule'
 import configure from './src/core/configure'
 import config from './src/core/config'
+import clone from 'clone'
 
 /**
  * Named exports are freezed and hence we need to create
  * a copy, so that it can be extended.
  */
-const rawCopy = Object.keys(raw).reduce((result, name) => {
-  result[name] = raw[name]
-  return result
-}, {})
-
-const validationsCopy = Object.keys(validations).reduce((result, name) => {
-  result[name] = validations[name]
-  return result
-}, {})
-
-const sanitizationsCopy = Object.keys(sanitizations).reduce((result, name) => {
-  result[name] = sanitizations[name]
-  return result
-}, {})
+const rawCopy = clone(raw)
+const validationsCopy = clone(validations)
+const sanitizationsCopy = clone(sanitizations)
 
 export default {
   validate: (...args) => {

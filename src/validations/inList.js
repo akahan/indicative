@@ -3,19 +3,18 @@ import toPromise from '../../lib/toPromise'
 import inArray from '../raw/inArray'
 
 /**
- * Makes sure that the value of field under validation is not
- * from one of the defined values.
+ * Ensures the value of a given field matches one of expected values.
  *
  * [source, js]
  * ----
  * const rules = {
- *   username: 'not_in:root,admin,super'
+ *   post_type: 'inList:draft,published'
  * }
  *
  * // or
  * const rules = {
- *   username: [
- *     rule('not_in', ['root', 'admin', 'super'])
+ *   post_type: [
+ *     rule('inList', ['draft', 'published'])
  *   ]
  * }
  * ----
@@ -23,7 +22,7 @@ import inArray from '../raw/inArray'
 export default (data, field, message, args, get) => {
   return toPromise(() => {
     const fieldValue = get(data, field)
-    if (!skippable(fieldValue) && inArray(fieldValue, args)) {
+    if (!skippable(fieldValue) && !inArray(fieldValue, args)) {
       return message
     }
   })
