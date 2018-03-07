@@ -14,6 +14,34 @@ export function validateAll<T>(data: T, rules: IValidationRules, messages?: IVal
  */
 export function sanitize<T>(data: T, rules: IValidationRules): T;
 
+export function rule(name: string, args: any): any;
+export function configure(options: any): void;
+
+export interface IValidationMethod {
+  (data: any, field: string, message: string, args: any[], get: Function): Promise<any>;
+}
+
+export interface IMessageMethod {
+  (field: string, validation: string, args: any[]): string;
+}
+
+export interface Error {
+  field?: string;
+  validation?: string;
+  message?: string;
+}
+
+export interface Data {
+  [x: string]: any;
+}
+
+export interface IValidationRules {
+  [x: string]: string;
+}
+
+export interface IValidationMessages {
+  [x: string]: string | IMessageMethod;
+}
 
 export namespace is {
   /**
@@ -296,30 +324,54 @@ export namespace sanitizor {
   function escape(value: string): string;
 }
 
-export interface IValidationMethod {
-  (data: any, field: string, message: string, args: any[], get: Function): Promise<any>;
+export namespace validations {
+  const above: IValidationMethod;
+  const accepted: IValidationMethod;
+  const alpha: IValidationMethod;
+  const alphaNumeric: IValidationMethod;
+  const array: IValidationMethod;
+  const boolean: IValidationMethod;
+  const confirmed: IValidationMethod;
+  const different: IValidationMethod;
+  const email: IValidationMethod;
+  const endsWith: IValidationMethod;
+  const equals: IValidationMethod;
+  const inList: IValidationMethod;
+  const includes: IValidationMethod;
+  const integer: IValidationMethod;
+  const ip: IValidationMethod;
+  const ipv4: IValidationMethod;
+  const ipv6: IValidationMethod;
+  const json: IValidationMethod;
+  const max: IValidationMethod;
+  const min: IValidationMethod;
+  const notEquals: IValidationMethod;
+  const notInList: IValidationMethod;
+  const number: IValidationMethod;
+  const object: IValidationMethod;
+  const range: IValidationMethod;
+  const regex: IValidationMethod;
+  const required: IValidationMethod;
+  const requiredIf: IValidationMethod;
+  const requiredWhen: IValidationMethod;
+  const requiredWithAll: IValidationMethod;
+  const requiredWithAny: IValidationMethod;
+  const requiredWithoutAll: IValidationMethod;
+  const requiredWithoutAny: IValidationMethod;
+  const same: IValidationMethod;
+  const startsWith: IValidationMethod;
+  const string: IValidationMethod;
+  const under: IValidationMethod;
+  const url: IValidationMethod;
+  const after: IValidationMethod;
+  const before: IValidationMethod;
+  const date: IValidationMethod;
+  const dateFormat: IValidationMethod;
+  const beforeOffsetOf: IValidationMethod;
+  const afterOffsetOf: IValidationMethod;
 }
 
-export interface IMessageMethod {
-  (field: string, validation: string, args: any[]): string;
-}
-
-/*
-export interface Error {
-  field?: string;
-  validation?: string;
-  message?: string;
-}
-
-export interface Data {
-  [x: string]: any;
-}
-*/
-
-export interface IValidationRules {
-  [x: string]: string;
-}
-
-export interface IValidationMessages {
-  [x: string]: string | IMessageMethod;
+export namespace formatters {
+  const Vanilla: void;
+  const JsonApi: void;
 }
