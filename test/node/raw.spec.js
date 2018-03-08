@@ -182,6 +182,18 @@ test.group('Raw | Presence', function () {
   })
 
   test('return true when value exists but is an empty object', function (assert) {
+    assert.equal(Is.exists({}), true)
+  })
+
+  test('return false when value is null', function (assert) {
+    assert.equal(Is.exists(null), false)
+  })
+
+  test('return false when value is undefined', function (assert) {
+    assert.equal(Is.exists(undefined), false)
+  })
+
+  test('return true when value exists but is an empty object', function (assert) {
     assert.equal(Is.existy({}), true)
   })
 
@@ -192,9 +204,12 @@ test.group('Raw | Presence', function () {
   test('return false when value is undefined', function (assert) {
     assert.equal(Is.existy(undefined), false)
   })
-
   test('return false when value is empty string', function (assert) {
     assert.equal(Is.existy(''), false)
+  })
+
+  test('return false when value is space string', function (assert) {
+    assert.equal(Is.existy(' '), false)
   })
 
   test('return true when value is a positive boolean', function (assert) {
