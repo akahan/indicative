@@ -105,9 +105,14 @@ export namespace is {
   function even(input: number): boolean;
 
   /**
-   * Tells whether input exists or not.
+   * Tells whether input exists or not. Trims spaces!
    */
   function existy(input: any): boolean;
+
+  /**
+   * Tells whether input exists or not.
+   */
+  function exists(input: any): boolean;
 
   /**
    * Tells whether input is falsy or not, opposite of truthy.
