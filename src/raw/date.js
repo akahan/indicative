@@ -1,11 +1,7 @@
-export default (input, strict = true) => {
-  if (input instanceof Date === true) {
-    return true
+export default (input, strict) => {
+  const isDateInstance = input instanceof Date
+  if (!isDateInstance && !strict) {
+    return new Date(input).toString() !== 'Invalid Date'
   }
-
-  if (strict) {
-    return false
-  }
-
-  return new Date(input).toString() !== 'Invalid Date'
+  return isDateInstance
 }

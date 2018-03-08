@@ -230,11 +230,6 @@ export namespace is {
   function url(input: string): boolean;
 
   /**
-   * Tells whether input is of type Date or not.
-   */
-  function isDate(input: any): boolean;
-
-  /**
    * Tells whether input date is a valid date is today or not.
    */
   function today(input: string | Date): boolean;

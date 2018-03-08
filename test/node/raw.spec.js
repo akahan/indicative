@@ -704,19 +704,4 @@ test.group('Raw | Dates', function () {
     assert.isTrue(isFormatted)
   })
 
-  test('should return true when input is a date', function (assert) {
-    assert.equal(Is.isDate(new Date()), true)
-  })
-
-  test('should return true when input is string representation of date', function (assert) {
-    assert.equal(Is.isDate('2015-11-30'), true)
-  })
-
-  test('should return false when input is invalid string representation of date', function (assert) {
-    assert.equal(Is.isDate('2015-11-40'), false)
-  })
-
-  test('should not convert date string to instance when strict is enabled', function (assert) {
-    assert.equal(Is.isDate('2015-11-30', true), false)
-  })
 })
