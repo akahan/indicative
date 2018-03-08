@@ -1,29 +1,6 @@
 
-/**
- * Validate a set of async validations mapped as field and rule called rules.
- */
-export function validate<T>(data: T, rules: IValidationRules, messages?: IValidationMessages, formatter?: any): Promise<T>;
-
-/**
- * Just like validate but waits for all the validations to occur and returns an array of errors.
- */
-export function validateAll<T>(data: T, rules: IValidationRules, messages?: IValidationMessages, formatter?: any): Promise<T>;
-
-/**
- * Sanitizes a given set of data with given set of rules.
- */
-export function sanitize<T>(data: T, rules: IValidationRules): T;
-
-export function rule(name: string, args: any): any;
-export function configure(options: any): void;
-
-export interface IValidationMethod {
-  (data: any, field: string, message: string, args: any[], get: Function): Promise<any>;
-}
-
-export interface IMessageMethod {
-  (field: string, validation: string, args: any[]): string;
-}
+export type IValidationMethod = (data: any, field: string, message: string, args: any[], get: Function) => Promise<any>;
+export type IMessageMethod = (field: string, validation: string, args: any[]) => string;
 
 export interface Error {
   field?: string;
@@ -305,7 +282,7 @@ export namespace sanitizor {
    */
   function toInt(value: any, args: any[]): number;
 
-   /**
+  /**
    * Converts a date to a date object or return null when invalid date
    */
   function toDate(value: any): Date | null;
@@ -375,3 +352,22 @@ export namespace formatters {
   const Vanilla: void;
   const JsonApi: void;
 }
+
+/**
+ * Validate a set of async validations mapped as field and rule called rules.
+ */
+export function validate<T>(data: T, rules: IValidationRules, messages?: IValidationMessages, formatter?: any): Promise<T>;
+
+/**
+ * Just like validate but waits for all the validations to occur and returns an array of errors.
+ */
+export function validateAll<T>(data: T, rules: IValidationRules, messages?: IValidationMessages, formatter?: any): Promise<T>;
+
+/**
+ * Sanitizes a given set of data with given set of rules.
+ */
+export function sanitize<T>(data: T, rules: IValidationRules): T;
+
+export function rule(name: string, args: any): any;
+export function configure(options: any): void;
+
