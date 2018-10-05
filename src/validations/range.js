@@ -1,7 +1,7 @@
 import toPromise from '../../lib/toPromise'
 import skippable from '../core/skippable'
 import between from '../raw/between'
-import isExisty from '../raw/existy'
+import isNull from '../raw/isNull'
 
 /**
  * Ensures the value of field under validation is under a given range. The values will
@@ -23,7 +23,7 @@ import isExisty from '../raw/existy'
  */
 export default (data, field, message, [min, max], get) => {
   return toPromise(() => {
-    if (!isExisty(min) || !isExisty(max)) {
+    if ([min, max].some(value => isNull(value) || isNaN(value))) {
       return new Error('range:min and max values are required for range validation')
     }
 
